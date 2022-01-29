@@ -41,7 +41,7 @@ def func(vtu_num,update,context):
         sgrade = []
         d.get("http://exams.veltech.edu.in/Studentlogin/UserPages/StudentUniversityResultsBySem.aspx")
         d.find_element_by_xpath('//select[@id="ContentPlaceHolder1_ddlSemester"]/option['+str(semm)+']').click()
-        time.sleep(3)
+        time.sleep(0)
         table=d.find_elements_by_xpath('//*[@id="ContentPlaceHolder1_gvExamResult2013"]/tbody/tr')
         sub_count=len(table)
         for i in range(2,sub_count+1):
@@ -80,7 +80,7 @@ def func(vtu_num,update,context):
         for pp in range(len(scredit)):
             sem_det=scode[pp]+"\t\t"+sname[pp]+"\t\t"+str(scredit[pp])+"\t\t"+sgrade[pp]
         gpa=sum(sgpoints)/(sum(scredit)*10)
-        sem_wise=sem_wise+"semester number : "+str(semm)+" Gpa : "+str(gpa*10)[0:4]+"\n"
+        sem_wise=sem_wise+"Semester - "+str(semm)+" Gpa : "+str(gpa*10)[0:4]+"\n"
         ccode.extend(scode)
         ccredit.extend(scredit)
         cname.extend(sname)
