@@ -7,7 +7,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 co=webdriver.ChromeOptions()
 co.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
 co.add_argument("--headless")
-co.add_argument("--diable-dev-shm-usage")
+co.add_argument("--disable-dev-sh-usage")
 co.add_argument("--no-sandbox")
 vtu_num=""
 def start_command(update, context):
