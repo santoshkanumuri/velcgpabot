@@ -2,8 +2,6 @@ from selenium import webdriver
 from telegram.ext import *
 import time
 import os
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
 op = webdriver.ChromeOptions()
 op.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 op.add_argument("--headless")
