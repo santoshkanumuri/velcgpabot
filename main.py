@@ -7,17 +7,16 @@ co.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
 co.add_argument("--headless")
 co.add_argument("--diable-dev-shm-usage")
 co.add_argument("--no-sandbox")
-d=webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=co)
 vtu_num=""
 def start_command(update, context):
     update.message.reply_text("Enter valid VTU Number\n vtuxxxxx")
 def handle_message(update, context):
     numbe = str(update.message.text).lower()
     print(numbe)
-
     res = func(numbe,update,context)
     update.message.reply_text(res)
 def func(vtu_num,update,context):
+    d=webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=co)
     d.get("http://exams.veltech.edu.in/Studentlogin/StuLogin.aspx")
     ubox=d.find_element_by_xpath('//*[@id="txtUserName"]')
     ubox.send_keys(vtu_num)
