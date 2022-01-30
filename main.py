@@ -6,6 +6,11 @@ import os
 import warnings
 import re
 warnings.filterwarnings("ignore", category=DeprecationWarning)
+op = webdriver.ChromeOptions()
+op.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+op.add_argument("--headless")
+op.add_argument("--no-sandbox")
+op.add_argument("--disable-dev-sh-usage")
 vtu_num=""
 def start_command(update, context):
     update.message.reply_text("Enter valid VTU Number\n vtuxxxxx")
@@ -15,7 +20,7 @@ def handle_message(update, context):
     res = func(numbe,update,context)
     update.message.reply_text(res)
 def func(vtu_num,update,context):
-    d = webdriver.Chrome(executable_path="C:\\browser_drivers\\chromedriver.exe")
+    d=webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=op)
     d.get("http://exams.veltech.edu.in/Studentlogin/StuLogin.aspx")
     ubox=d.find_element_by_xpath('//*[@id="txtUserName"]')
     ubox.send_keys(vtu_num)
