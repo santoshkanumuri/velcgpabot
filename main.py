@@ -108,7 +108,6 @@ def func(vtu_num,update,context):
         sgpa.append(gpa)
         gpa3 = sum(cgpoints)/(sum(ccredit)*10)
         sem_wise=sem_wise+"CGPA After Semester - "+str(semm)+" is "+str(gpa3*10)[0:4]+"\n"
-        Math.ceil
     cgpa=sum(sgpa)/len(sgpa)
     cgpa2=sum(cgpoints)/(sum(ccredit)*10)
     sem_wise=sem_wise+"\nTotal Cgpa : "+str(cgpa2*10)[0:4]
