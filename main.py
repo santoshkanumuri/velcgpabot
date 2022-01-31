@@ -40,7 +40,7 @@ def func(vtu_num,update,context):
     ctable = d.find_elements_by_xpath('//*[@id="ContentPlaceHolder1_gvCredits"]/tbody/tr')
     clen = len(ctable)
     credit_code, credit_credit = [], []
-    ra,ne,ab=[],[],[]
+    ra,ne,ab,nyd=[],[],[],[]
     for i in range(3, clen + 1):
         stri = d.find_element_by_xpath('//*[ @ id = "ContentPlaceHolder1_gvCredits"]/tbody/tr[' + str(i) + ']/td[1]').text
         l = re.compile("^\d{4}[A-za-z]{2}\d{3}$")
@@ -98,6 +98,10 @@ def func(vtu_num,update,context):
             elif (sgrade[i] == "AB"):
                 ab.append(sname[i])
                 sgpoints[i] = 0 * scredit[i]
+            elif((sgrade[i]).lower() =="To Be Declared".lower()):
+                nyd.append(sname[i])
+                scredit[i]=0
+                sgpoints[i] = 0 * scredit[i]
             else:
                 sgpoints[i] = 0 * scredit[i]
         for pp in range(len(scredit)):
@@ -127,6 +131,10 @@ def func(vtu_num,update,context):
         sem_wise = sem_wise + "\n\nAbsent Exam List\n"
         for i in range(len(ab)):
             sem_wise = sem_wise + str(i + 1) + " . " + ab[i]+"\n"
+    if (len(nyd) != 0):
+        sem_wise = sem_wise + "\n\nSubject Results Not Yet Declared\n"
+        for i in range(len(nyd)):
+            sem_wise = sem_wise + str(i + 1) + " . " + nyd[i]+"\n"
     return sem_wise
 updater = Updater("5193860219:AAEVRNHmwKbpV4_gqbvBSw0juTL9CEmVGCw", use_context=True)
 dp = updater.dispatcher
