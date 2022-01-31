@@ -15,7 +15,11 @@ vtu_num=""
 def start_command(update, context):
     update.message.reply_text("Enter valid VTU Number\n vtuxxxxx")
 def handle_message(update, context):
-    numbe = str(update.message.text).lower()
+    numbe = (str(update.message.text).lower()).strip()
+    if("vtu" not in numbe):
+        ptrn="[0-9]*$"
+        num=re.findall(ptrn,numbe)
+        numbe="vtu"+str(num[0])
     print(numbe)
     res = func(numbe,update,context)
     update.message.reply_text(res)
@@ -114,15 +118,15 @@ def func(vtu_num,update,context):
     if(len(ra)!=0):
         sem_wise=sem_wise+"\n\nRe-Appeared Exam List\n"
         for i in range(len(ra)):
-            sem_wise=sem_wise+str(i+1)+" . "+ra[i]
+            sem_wise=sem_wise+str(i+1)+" . "+ra[i]+"\n"
     if (len(ne) != 0):
         sem_wise = sem_wise + "\n\nNot Eligible Exam List\n"
         for i in range(len(ne)):
-            sem_wise = sem_wise + str(i + 1) + " . " + ne[i]
+            sem_wise = sem_wise + str(i + 1) + " . " + ne[i]+"\n"
     if (len(ab) != 0):
         sem_wise = sem_wise + "\n\nAbsent Exam List\n"
         for i in range(len(ab)):
-            sem_wise = sem_wise + str(i + 1) + " . " + ab[i]
+            sem_wise = sem_wise + str(i + 1) + " . " + ab[i]+"\n"
     return sem_wise
 updater = Updater("5193860219:AAEVRNHmwKbpV4_gqbvBSw0juTL9CEmVGCw", use_context=True)
 dp = updater.dispatcher
