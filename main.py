@@ -34,7 +34,10 @@ def func(vtu_num,update,context):
     ld.click()
     names = d.find_element_by_xpath('//*[@id="ContentPlaceHolder1_lblStudentName"]').text
     sems_comp=d.find_element_by_xpath('//*[@id="ContentPlaceHolder1_lblSemester"]').text
-    ti=(int(sems_comp)*8)-8
+    if(int(sems_comp)>4):
+        ti=(int(sems_comp)*8)
+    else:
+        ti=(int(sems_comp)*10)
     update.message.reply_text("Estimated Waiting Time : "+str(ti)+" secs")
     d.get("http://exams.veltech.edu.in/Studentlogin/UserPages/StudentCreditsPoint.aspx")
     ctable = d.find_elements_by_xpath('//*[@id="ContentPlaceHolder1_gvCredits"]/tbody/tr')
@@ -53,7 +56,7 @@ def func(vtu_num,update,context):
     sem_wise = names+"\n"+reg_no+"\n"+branch+"\n"
     sgpa,ccode,cname,cgrade,ccredit,cgpoints=[],[],[],[],[],[]
     sem_det=""
-    for semm in range(1,int(sems_comp)):
+    for semm in range(1,int(sems_comp)+1):
         scode = []
         sname = []
         sgrade = []
@@ -61,6 +64,8 @@ def func(vtu_num,update,context):
         time.sleep(3)
         table=d.find_elements_by_xpath('//*[@id="ContentPlaceHolder1_gvExamResult2013"]/tbody/tr')
         sub_count=len(table)
+        if(sub_count==0):
+            return sem_wise
         for i in range(2,sub_count+1):
             p=d.find_element_by_xpath('//*[@id="ContentPlaceHolder1_gvExamResult2013"]/tbody/tr['+str(i)+']/td[3]').text
             scode.append(p)
@@ -106,7 +111,10 @@ def func(vtu_num,update,context):
                 sgpoints[i] = 0 * scredit[i]
         for pp in range(len(scredit)):
             sem_det=scode[pp]+"\t\t"+sname[pp]+"\t\t"+str(scredit[pp])+"\t\t"+sgrade[pp]
-        gpa=sum(sgpoints)/(sum(scredit)*10)
+        try:
+            gpa=sum(sgpoints)/(sum(scredit)*10)
+        except ZeroDivisionError:
+            pass
         sem_wise=sem_wise+"semester - "+str(semm)+" Gpa : "+str(gpa*10)[0:4]+"\n"
         ccode.extend(scode)
         ccredit.extend(scredit)
@@ -135,10 +143,12 @@ def func(vtu_num,update,context):
         sem_wise = sem_wise + "\n\nSubject Results Not Yet Declared\n"
         for i in range(len(nyd)):
             sem_wise = sem_wise + str(i + 1) + " . " + nyd[i]+"\n"
+
     return sem_wise
 updater = Updater("5193860219:AAEVRNHmwKbpV4_gqbvBSw0juTL9CEmVGCw", use_context=True)
 dp = updater.dispatcher
 dp.add_handler(CommandHandler("start", start_command))
+dp.add_handler(CommandHandler("help", help_command))
 dp.add_handler(MessageHandler(Filters.text, handle_message))
 updater.start_polling()
 updater.idle()
