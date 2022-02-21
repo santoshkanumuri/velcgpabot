@@ -13,7 +13,9 @@ op.add_argument("--no-sandbox")
 op.add_argument("--disable-dev-sh-usage")
 vtu_num=""
 def start_command(update, context):
-    update.message.reply_text("Enter valid VTU Number\n vtuxxxxx")
+    update.message.reply_text("Enter valid VTU Number\n vtuxxxxx\nclick /\help if estimated time doesnt show up")
+def help_command(update,context):
+    update.message.reply_text("The Student Login site is currently down, Please try after some time")
 def handle_message(update, context):
     numbe = (str(update.message.text).lower()).strip()
     if("vtu" not in numbe):
