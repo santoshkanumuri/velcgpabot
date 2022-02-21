@@ -39,7 +39,7 @@ def func(vtu_num,update,context):
     if(int(sems_comp)>4):
         ti=(int(sems_comp)*8)
     else:
-        ti=(int(sems_comp)*10)
+        ti=(int(sems_comp)*10)+5
     update.message.reply_text("Estimated Waiting Time : "+str(ti)+" secs")
     d.get("http://exams.veltech.edu.in/Studentlogin/UserPages/StudentCreditsPoint.aspx")
     ctable = d.find_elements_by_xpath('//*[@id="ContentPlaceHolder1_gvCredits"]/tbody/tr')
