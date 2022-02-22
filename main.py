@@ -116,7 +116,8 @@ def func(vtu_num,update,context):
         try:
             gpa=sum(sgpoints)/(sum(scredit)*10)
         except ZeroDivisionError:
-            pass
+            gpa=0
+            
         sem_wise=sem_wise+"semester - "+str(semm)+" Gpa : "+str(gpa*10)[0:4]+"\n"
         ccode.extend(scode)
         ccredit.extend(scredit)
