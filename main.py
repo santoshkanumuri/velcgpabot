@@ -48,6 +48,7 @@ def func(vtu_num,update,context):
     credit_code, credit_credit = [], []
     ra,ne,ab,nyd=[],[],[],[]
     for i in range(3, clen + 1):
+        print("c")
         stri = d.find_element_by_xpath('//*[ @ id = "ContentPlaceHolder1_gvCredits"]/tbody/tr[' + str(i) + ']/td[1]').text
         l = re.compile("^\d{4}[A-za-z]{2}\d{3}$")
         if (l.match(stri)):
@@ -60,6 +61,7 @@ def func(vtu_num,update,context):
     sgpa,ccode,cname,cgrade,ccredit,cgpoints=[],[],[],[],[],[]
     sem_det=""
     for semm in range(1,int(sems_comp)+1):
+        print(semm)
         scode = []
         sname = []
         sgrade = []
