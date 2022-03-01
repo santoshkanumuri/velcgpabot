@@ -47,8 +47,8 @@ def func(vtu_num,update,context):
     clen = len(ctable)
     credit_code, credit_credit = [], []
     ra,ne,ab,nyd=[],[],[],[]
+    print("c")
     for i in range(3, clen + 1):
-        print("c")
         stri = d.find_element_by_xpath('//*[ @ id = "ContentPlaceHolder1_gvCredits"]/tbody/tr[' + str(i) + ']/td[1]').text
         l = re.compile("^\d{4}[A-za-z]{2}\d{3}$")
         if (l.match(stri)):
