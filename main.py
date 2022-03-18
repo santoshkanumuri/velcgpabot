@@ -13,9 +13,9 @@ op.add_argument("--no-sandbox")
 op.add_argument("--disable-dev-sh-usage")
 vtu_num=""
 def start_command(update, context):
-    update.message.reply_text("Enter valid VTU Number\n vtuxxxxx\nclick /help if estimated time doesnt show up")
+    update.message.reply_text("Enter valid VTU Number\n vtuxxxxx\nclick /help if estimated time doesnt show up.\n use other bots if response is too delayed.\n @velcgpa2bot\n @velcgpa3bot \n @velcgpa4bot \n @velcgpa5bot")
 def help_command(update,context):
-    update.message.reply_text("The Student Login site is currently down, Please try after some time")
+    update.message.reply_text("The Student Login site is currently down, Please try after some time or due to heavy traffic your response might be delayed.\n use other bots if response is too delayed.\n @velcgpa2bot\n @velcgpa3bot \n @velcgpa4bot \n @velcgpa5bot")
 def handle_message(update, context):
     numbe = (str(update.message.text).lower()).strip()
     if("vtu" not in numbe):
