@@ -60,7 +60,7 @@ def func(vtu_num,update,context):
     sem_wise = names+"\n"+reg_no+"\n"+branch+"\n"
     sgpa,ccode,cname,cgrade,ccredit,cgpoints=[],[],[],[],[],[]
     sem_det=""
-    for semm in range(1,int(sems_comp)+1):
+    for semm in range(1,int(sems_comp)+2):
         print(semm)
         scode = []
         sname = []
