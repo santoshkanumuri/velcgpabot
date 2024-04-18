@@ -11,7 +11,7 @@ This is a Telegram bot built with Python and Selenium that allows students to ch
 
 ## Prerequisites
 
-- Python 3.x
+- Python 3.9
 - Selenium WebDriver
 - Telegram Bot API Token
 - College Results Website URL
